@@ -17,7 +17,7 @@ public class getPlayer extends ListenerAdapter {
 
         String[] message = event.getMessage().getContentRaw().split(" ");
 
-        if(message[0].equalsIgnoreCase("/rank")) {
+        if(message[0].equalsIgnoreCase("!rank")) {
             if (message.length == 1) {
                 event.getChannel().sendMessage("Digite um usuário.").queue();
             }
@@ -32,8 +32,13 @@ public class getPlayer extends ListenerAdapter {
 
                 if (player.isPresent()) {
                     EmbedBuilder eb = new EmbedBuilder();
-                    eb.setTitle("Stats do: " + player.get().nick());
-                    eb.addField("Elo", player.get().rank(), true);
+                    eb.setTitle("Stats de: " + player.get().nick());
+                    eb.setThumbnail(player.get().rankUrl());
+                    eb.addField("Kd", player.get().kd(), false);
+                    eb.addField("Dmr", player.get().dmr(), false);
+                    eb.addField("Wr%", player.get().winRate(), false);
+                    eb.addField("Hs%", player.get().hs(), false);
+                    eb.addField("Kast%", player.get().kast(), false);
                     event.getChannel().sendMessageEmbeds(eb.build()).queue();
                 } else {
                     event.getChannel().sendMessage("Ocorreu um erro ao obter o jogador").queue();

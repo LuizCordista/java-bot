@@ -12,7 +12,7 @@ import java.util.Optional;
 public class Main {
     public static void main(String[] args) throws IOException {
 
-        String token = "MTIxMjE3Njk1MDU2Nzc3MjI1MA.GGvxXc.kkbOBjrpBMYKZu1zCgd5WKLb7MXdz8i20AlYX4";
+        String token = System.getenv("DISCORD_TOKEN");
         JDA jda = JDABuilder.createDefault(token)
                 .addEventListeners(new getPlayer())
                 .enableIntents(GatewayIntent.GUILD_MESSAGES)
